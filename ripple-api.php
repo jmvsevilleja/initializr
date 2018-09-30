@@ -18,6 +18,7 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.15.0/lodash.js"></script>
         <script src="js/ripple-1.0.1.js"></script>
+
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -87,5 +88,22 @@
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X','auto');ga('send','pageview');
         </script>
+
+        <script>
+          console.log(ripple);
+          var api = new ripple.RippleAPI({server:'wss://s1.ripple.com/'});
+          const address = 'r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59';
+
+          api.connect().then(function() {
+              return api.getServerInfo();
+          }).then(function(server_info) {
+              console.log(server_info);
+          }).then(function() {
+              return api.getAccountInfo(address);
+          }).then(function(account_info) {
+            console.log(account_info);
+          });
+        </script>
+
     </body>
 </html>
