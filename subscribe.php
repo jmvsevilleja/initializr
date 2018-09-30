@@ -27,7 +27,7 @@
 
         <div class="header-container">
             <header class="wrapper clearfix">
-                <h1 class="title">h1.title</h1>
+                <h1 class="title">XRPay</h1>
                 <nav>
                     <ul>
                         <li><a href="#">nav ul li a</a></li>
@@ -40,39 +40,22 @@
 
         <div class="main-container">
             <div class="main wrapper clearfix">
-
                 <article>
                     <header>
-                        <h1>article header h1</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec.</p>
+                        <h1>Title</h1>
                     </header>
-                    <section>
-                        <h2>article section h2</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.</p>
+                    <section id="content">
+                        <p>Lorem ipsum dolor sit amet</p>
                     </section>
-                    <section>
-                        <h2>article section h2</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.</p>
-                    </section>
-                    <footer>
-                        <h3>article footer h3</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor.</p>
-                    </footer>
                 </article>
 
                 <aside>
                     <h3>aside</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices.</p>
+                    <p>Lorem ipsum dolor sit amet</p>
                 </aside>
 
             </div> <!-- #main -->
         </div> <!-- #main-container -->
-
-        <div class="footer-container">
-            <footer class="wrapper">
-                <h3>footer</h3>
-            </footer>
-        </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
@@ -90,19 +73,70 @@
         </script>
 
         <script>
-          console.log(ripple);
-          var api = new ripple.RippleAPI({server:'wss://s1.ripple.com/'});
-          const address = 'rvvrmbLYQwnQEm68g4MmNmtavQZzQRLki';
+            content = document.getElementById('content');
+            var api = new ripple.RippleAPI({server:'wss://s1.ripple.com/'});
+            const address = 'rvvrmbLYQwnQEm68g4MmNmtavQZzQRLki';
 
-          api.connect().then(function() {
+            // api connect
+            api.connect().then(function() {
               return api.getServerInfo();
-          }).then(function(server_info) {
+            }).then(function(server_info) {
               console.log(server_info);
-          }).then(function() {
+            }).then(function() {
               return api.getAccountInfo(address);
-          }).then(function(account_info) {
-            console.log(account_info);
-          });
+            }).then(function(account_info) {
+                console.log(account_info);
+            }).then(function() {
+
+                // 'transaction' can be replaced with the relevant `type` from the table above
+                api.connection.on('transaction', (event) => {
+                    console.log('TRANSACTION');
+                    // Do something useful with `event`
+                    console.log(JSON.stringify(event, null, 2))
+                });
+
+                // api request subscribe
+                api.request('subscribe', {
+                    accounts: [ address ]
+                }).then(response => {
+                    console.log('SUBSCRIBE');
+                    console.log(response);
+                    if (response.status === 'success') {
+                        console.log('Successfully subscribed')
+                    }
+                }).catch(error => {
+                    console.log(error);
+                });
+
+                // api request ledger
+                api.request('ledger', {
+                    ledger_index: 'validated'
+                }).then(response => {
+                    console.log('LEDGER');
+                    console.log(response);
+                    if (response.status === 'success') {
+                        console.log(JSON.stringify(response, null, 2));
+                    }
+                }).catch(error => {
+                    console.log(error);
+                });
+
+            }).catch(console.error);
+
+
+            api.on('error', (errorCode, errorMessage) => {
+                console.log(errorCode + ': ' + errorMessage);
+            });
+            api.on('connected', () => {
+              console.log('CONNECTED');
+            });
+            api.on('disconnected', (code) => {
+              // code - [close code](https://developer.mozilla.org/en-US/docs/Web/API/CloseEvent) sent by the server
+              // will be 1000 if this was normal closure
+              console.log('DISCONNECTED, code:', code);
+            });
+
+
         </script>
 
     </body>
