@@ -1,0 +1,89 @@
+CONNECTED
+subscribe:84 {buildVersion: "1.1.0", completeLedgers: "40585984-41905654", ioLatencyMs: 1, jqTransOverflow: "0", lastClose: {…}, …}buildVersion: "1.1.0"completeLedgers: "40585984-41905654"hostID: "GAB"ioLatencyMs: 1jqTransOverflow: "0"lastClose: {convergeTimeS: 3.001, proposers: 22}loadFactor: 1peerDisconnects: "100085"peerDisconnectsResources: "838"peers: 160pubkeyNode: "n9MP4F2Wfh3JUJ1vJmqNyYrmJst1qGmh5MRu73oxWjuqeyHCvGpR"serverState: "full"stateAccounting: {connected: {…}, disconnected: {…}, full: {…}, syncing: {…}, tracking: {…}}time: "2018-Sep-30 23:48:59.889730"uptime: 843644validatedLedger: {hash: "8AACCE1047721B103B54F029E14245F433DF06309718C31FB07414F8D80E5398", baseFeeXRP: "0.00001", reserveBaseXRP: "20", reserveIncrementXRP: "5", ledgerVersion: 41905654}validationQuorum: 18__proto__: Object
+subscribe:88 {sequence: 3, xrpBalance: "500.0994", ownerCount: 0, previousAffectingTransactionID: "DE822DD94D978DAAB6E11E35E305CA271EF677C6A0B4A23D168679483C51797A", previousAffectingTransactionLedgerVersion: 41885912}ownerCount: 0previousAffectingTransactionID: "DE822DD94D978DAAB6E11E35E305CA271EF677C6A0B4A23D168679483C51797A"previousAffectingTransactionLedgerVersion: 41885912sequence: 3xrpBalance: "500.0994"__proto__: Object
+subscribe:102 SUBSCRIBE
+subscribe:103 {}
+subscribe:115 LEDGER
+subscribe:116 {ledger: {…}, ledger_hash: "8AACCE1047721B103B54F029E14245F433DF06309718C31FB07414F8D80E5398", ledger_index: 41905654, validated: true}ledger: {accepted: true, account_hash: "8020578AF7D19B06796A38E6EF81CA6793756602CECCC2034DF344FF458E7B5F", close_flags: 0, close_time: 591666540, close_time_human: "2018-Sep-30 23:49:00.000000000", …}ledger_hash: "8AACCE1047721B103B54F029E14245F433DF06309718C31FB07414F8D80E5398"ledger_index: 41905654validated: true__proto__: Object
+subscribe:93 TRANSACTION
+subscribe:95 {
+  "engine_result": "tesSUCCESS",
+  "engine_result_code": 0,
+  "engine_result_message": "The transaction was applied. Only final in a validated ledger.",
+  "ledger_hash": "35BCAA298C4DF8E6DE3503D9B31B4B6F0FF2D28C7302056D9B2ECCD61923412F",
+  "ledger_index": 41905680,
+  "meta": {
+    "AffectedNodes": [
+      {
+        "ModifiedNode": {
+          "FinalFields": {
+            "Account": "rU2mEJSLqBRkYLVTv55rFTgQajkLTnT6mA",
+            "Balance": "310106350660",
+            "Flags": 1179648,
+            "OwnerCount": 5,
+            "Sequence": 4578
+          },
+          "LedgerEntryType": "AccountRoot",
+          "LedgerIndex": "A634EC8730F22B6A4041765ED39FDF5625466E5FD88C9F437E1C67A06D898546",
+          "PreviousFields": {
+            "Balance": "310107350705",
+            "Sequence": 4577
+          },
+          "PreviousTxnID": "90C0EE1ED48CEAEC59D2D07B2AC945912457F130EA542D690C76D3330FA809DE",
+          "PreviousTxnLgrSeq": 41905542
+        }
+      },
+      {
+        "ModifiedNode": {
+          "FinalFields": {
+            "Account": "rvvrmbLYQwnQEm68g4MmNmtavQZzQRLki",
+            "Balance": "501099400",
+            "Flags": 0,
+            "OwnerCount": 0,
+            "Sequence": 3
+          },
+          "LedgerEntryType": "AccountRoot",
+          "LedgerIndex": "B62EF1B45F1F6B8A62EF18649B14F0D9EA27247F351B33EBBA78E33BA5E6C17B",
+          "PreviousFields": {
+            "Balance": "500099400"
+          },
+          "PreviousTxnID": "DE822DD94D978DAAB6E11E35E305CA271EF677C6A0B4A23D168679483C51797A",
+          "PreviousTxnLgrSeq": 41885912
+        }
+      }
+    ],
+    "TransactionIndex": 8,
+    "TransactionResult": "tesSUCCESS"
+  },
+  "status": "closed",
+  "transaction": {
+    "Account": "rU2mEJSLqBRkYLVTv55rFTgQajkLTnT6mA",
+    "Amount": "1000000",
+    "Destination": "rvvrmbLYQwnQEm68g4MmNmtavQZzQRLki",
+    "Fee": "45",
+    "Flags": 2147483648,
+    "Sequence": 4577,
+    "Signers": [
+      {
+        "Signer": {
+          "Account": "r9tzi2i65ghKyoaZmExb3SDob5gyRmasdQ",
+          "SigningPubKey": "0208E744931CBB47A12FC8D765F41EC3F70382DFA451FA9274BF6A59533847A822",
+          "TxnSignature": "3045022100E7E627937B2EA83EC82E25EDBE271471D94C1156B5F7F0860D24190DD910D46A022039C3085FA629A1C27C0B45A03FB4C20743D022A58E5AE0C5D71F09313A6BAC2D"
+        }
+      },
+      {
+        "Signer": {
+          "Account": "rNqTP7ADfagcJudm1AWxwqKCBk4y4VT4Zh",
+          "SigningPubKey": "02FA323E51CFFD951CF979078788B69D98D3EA1CB40B80B9FB6516EAF85B16BC0B",
+          "TxnSignature": "304402204B8B16B31C92EBACB8C3FC77EE1777BBE1B0DCE661ADC5A0E6DB4069FEF326E8022016F178B2C359426FB7329C29E1B56DFADAF6230605AD6A0963F8D663A304BF54"
+        }
+      }
+    ],
+    "SigningPubKey": "",
+    "TransactionType": "Payment",
+    "date": 591666631,
+    "hash": "BF6F6FFD9AC41BBD95DEBE5EC83B144AA6F36A5E8A6CCB42D8F3CC0C49E665B1"
+  },
+  "type": "transaction",
+  "validated": true
+}

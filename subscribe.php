@@ -27,7 +27,7 @@
 
         <div class="header-container">
             <header class="wrapper clearfix">
-                <h1 class="title">XRPay</h1>
+                <h1 class="title">Initializr</h1>
                 <nav>
                     <ul>
                         <li><a href="#">nav ul li a</a></li>
@@ -62,20 +62,12 @@
 
         <script src="js/main.js"></script>
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
-        </script>
-
         <script>
             content = document.getElementById('content');
-            var api = new ripple.RippleAPI({server:'wss://s1.ripple.com/'});
-            const address = 'rvvrmbLYQwnQEm68g4MmNmtavQZzQRLki';
+            //var api_live = new ripple.RippleAPI({server:'wss://s1.ripple.com/'});
+            var api = new ripple.RippleAPI({server:'wss://s.altnet.rippletest.net:51233'});
+            //const address_live = 'rvvrmbLYQwnQEm68g4MmNmtavQZzQRLki';
+            const address = 'r47esrFFUpDuDFfMNyKVvtg3B3kUxSeCj';
 
             // api connect
             api.connect().then(function() {
@@ -87,13 +79,6 @@
             }).then(function(account_info) {
                 console.log(account_info);
             }).then(function() {
-
-                // 'transaction' can be replaced with the relevant `type` from the table above
-                api.connection.on('transaction', (event) => {
-                    console.log('TRANSACTION');
-                    // Do something useful with `event`
-                    console.log(JSON.stringify(event, null, 2))
-                });
 
                 // api request subscribe
                 api.request('subscribe', {
@@ -119,6 +104,13 @@
                     }
                 }).catch(error => {
                     console.log(error);
+                });
+
+                // 'transaction' can be replaced with the relevant `type` from the table above
+                api.connection.on('transaction', (event) => {
+                    console.log('TRANSACTION');
+                    // Do something useful with `event`
+                    console.log(JSON.stringify(event, null, 2))
                 });
 
             }).catch(console.error);
