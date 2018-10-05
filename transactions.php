@@ -73,10 +73,12 @@
             api.connect().then(function() {
               return api.getServerInfo();
             }).then(function(server_info) {
+              console.log('api.getServerInfo()');
               console.log(server_info);
             }).then(function() {
               return api.getAccountInfo(address);
             }).then(function(account_info) {
+                console.log('api.getAccountInfo()');
                 console.log(account_info);
             }).then(function() {
 
@@ -84,7 +86,7 @@
                 api.request('subscribe', {
                     accounts: [ address ]
                 }).then(response => {
-                    console.log('SUBSCRIBE');
+                    console.log('api.request("subscribe",{})');
                     console.log(response);
                     if (response.status === 'success') {
                         console.log('Successfully subscribed')
@@ -97,7 +99,7 @@
                 api.request('ledger', {
                     ledger_index: 'validated'
                 }).then(response => {
-                    console.log('LEDGER');
+                    console.log('api.request("ledger",{})');
                     console.log(response);
                     if (response.status === 'success') {
                         console.log(JSON.stringify(response, null, 2));
@@ -108,7 +110,7 @@
 
                 // 'transaction' can be replaced with the relevant `type` from the table above
                 api.connection.on('transaction', (event) => {
-                    console.log('TRANSACTION');
+                    console.log('api.connection.on("transaction",{})');
                     // Do something useful with `event`
                     console.log(JSON.stringify(event, null, 2))
                 });
@@ -117,15 +119,18 @@
 
 
             api.on('error', (errorCode, errorMessage) => {
+                console.log('api.on("error")');
                 console.log(errorCode + ': ' + errorMessage);
             });
             api.on('connected', () => {
-              console.log('CONNECTED');
+              console.log('api.on("connected")');
             });
+
             api.on('disconnected', (code) => {
               // code - [close code](https://developer.mozilla.org/en-US/docs/Web/API/CloseEvent) sent by the server
               // will be 1000 if this was normal closure
-              console.log('DISCONNECTED, code:', code);
+              console.log('api.on("disconnected")');
+              console.log('code:', code);
             });
 
 

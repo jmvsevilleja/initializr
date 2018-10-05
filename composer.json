@@ -1,0 +1,13 @@
+{
+    "name": "xrp/initializr",
+    "description": "Basic Ripple net",
+    "require": {
+        "predis/predis": "^1.1"
+    },
+    "authors": [
+        {
+            "name": "Jess Mark Sevilleja",
+            "email": "jessmark.sevilleja@bayviewtechnology.com"
+        }
+    ]
+}
