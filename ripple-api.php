@@ -92,7 +92,7 @@
         <script>
           console.log(ripple);
           var api = new ripple.RippleAPI({server:'wss://s1.ripple.com/'});
-          const address = 'rvvrmbLYQwnQEm68g4MmNmtavQZzQRLki';
+          const address = 'r4uVzD6VUUrmmatWe3k7YsV3vvNfmNnpvi';
 
           api.connect().then(function() {
               return api.getServerInfo();

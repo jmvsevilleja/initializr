@@ -66,7 +66,7 @@
             content = document.getElementById('content');
             //var api_live = new ripple.RippleAPI({server:'wss://s1.ripple.com/'});
             var api = new ripple.RippleAPI({server:'wss://s.altnet.rippletest.net:51233'});
-            //const address_live = 'rvvrmbLYQwnQEm68g4MmNmtavQZzQRLki';
+            //const address_live = 'r4uVzD6VUUrmmatWe3k7YsV3vvNfmNnpvi';
             const address = 'r47esrFFUpDuDFfMNyKVvtg3B3kUxSeCj';
 
             // api connect
